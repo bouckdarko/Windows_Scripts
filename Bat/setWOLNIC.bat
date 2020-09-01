@@ -1,3 +1,10 @@
+:: Open Firewall ports for Wol
+
+netsh advfirewall firewall add rule name="UDP Port 7" dir=in action=allow protocol=UDP localport=7
+netsh advfirewall firewall add rule name="UDP Port 9" dir=in action=allow protocol=UDP localport=9
+
+:: Set registry key for Wol = ON on every possible NIC
+
 reg add HKLM\SYSTEM\ControlSet001\Control\Class\{4D36E972-E325-11CE-BFC1-08002BE10318}\0000 /t REG_SZ /v *WakeOnMagicPacket /d 1 /f
 reg add HKLM\SYSTEM\ControlSet001\Control\Class\{4D36E972-E325-11CE-BFC1-08002BE10318}\0000 /t REG_SZ /v *WakeOnPattern /d 1 /f
 reg add HKLM\SYSTEM\ControlSet001\Control\Class\{4D36E972-E325-11CE-BFC1-08002BE10318}\0000 /t REG_SZ /v EnablePME /d 1 /f
